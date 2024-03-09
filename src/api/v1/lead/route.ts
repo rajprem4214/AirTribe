@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { registerForCourse } from './handler';
+import { createLeadHandler } from './handler';
 
 
 const leadRouter = Router();
-leadRouter.post('/new', registerForCourse);
+leadRouter.post('/new', createLeadHandler);
 
 export { leadRouter };

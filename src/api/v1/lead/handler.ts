@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { AppDataSource } from "../../../data-source"
 import { Lead } from '../../../entity/Lead';
 
-export const registerForCourse = async (req: Request, res: Response): Promise<void> => {
+export const createLeadHandler = async (req: Request, res: Response): Promise<void> => {
     try {
         const { course, name, email, phoneNumber, linkedInProfile } = req.body;
 
