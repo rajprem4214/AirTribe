@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { createInstructor } from './handler';
+import { createInstructorHandler } from './handler';
 
 
 const instructorRouter = Router();
-instructorRouter.post('/new', createInstructor);
+instructorRouter.post('/new', createInstructorHandler);
 
 export { instructorRouter };

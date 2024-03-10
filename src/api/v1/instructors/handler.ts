@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { AppDataSource } from "../../../data-source"
 import { Instructor } from '../../../entity/Instructor';
 
-export const createInstructor = async (req: Request, res: Response): Promise<void> => {
+export const createInstructorHandler = async (req: Request, res: Response): Promise<void> => {
     try {
         const { name, email } = req.body;
         const instructor = new Instructor();

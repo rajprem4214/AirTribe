@@ -35,7 +35,7 @@ export const createLeadHandler = async (req: Request, res: Response): Promise<vo
 };
 
 
-export const updateLeadStatus = async (req: Request, res: Response): Promise<void> => {
+export const updateLeadStatusHandler = async (req: Request, res: Response): Promise<void> => {
     try {
         const id: number = parseInt(req.params.id);
         const { status } = req.body;

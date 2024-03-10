@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { createCourseHandler, updateCourseDetails } from './handler';
+import { createCourseHandler, updateCourseDetailsHandler } from './handler';
 
 
 const courseRouter = Router();
 courseRouter.post('/new', createCourseHandler);
-courseRouter.patch('/:id', updateCourseDetails)
+courseRouter.patch('/:id', updateCourseDetailsHandler)
 
 export { courseRouter };

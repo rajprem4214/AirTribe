@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { createLeadHandler, searchLeads, updateLeadStatus } from './handler';
+import { createLeadHandler, searchLeads, updateLeadStatusHandler } from './handler';
 
 
 const leadRouter = Router();
 leadRouter.post('/new', createLeadHandler);
-leadRouter.patch('/:id', updateLeadStatus);
+leadRouter.patch('/:id', updateLeadStatusHandler);
 leadRouter.get('/search', searchLeads);
 
 export { leadRouter };

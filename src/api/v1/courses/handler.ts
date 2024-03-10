@@ -18,7 +18,7 @@ export const createCourseHandler = async (req: Request, res: Response): Promise<
     }
 };
 
-export const updateCourseDetails = async (req: Request, res: Response): Promise<void> => {
+export const updateCourseDetailsHandler = async (req: Request, res: Response): Promise<void> => {
     try {
         const id: number = parseInt(req.params.id);
         const { name, maxSeats, startDate } = req.body;
