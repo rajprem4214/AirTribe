@@ -3,7 +3,7 @@ import { AppDataSource } from "../../../data-source"
 import { Lead } from '../../../entity/Lead';
 import { Comment } from '../../../entity/Comment';
 
-export const addComment = async (req: Request, res: Response): Promise<void> => {
+export const addCommentHandler = async (req: Request, res: Response): Promise<void> => {
     try {
         const { leadId, text, instructor } = req.body;
 
