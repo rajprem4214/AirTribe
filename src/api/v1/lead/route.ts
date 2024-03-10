@@ -4,7 +4,7 @@ import { createLeadHandler, searchLeads, updateLeadStatusHandler } from './handl
 
 const leadRouter = Router();
 leadRouter.post('/new', createLeadHandler);
-leadRouter.patch('/:id', updateLeadStatusHandler);
+leadRouter.patch('/:id', updateLeadStatusHandler );
 leadRouter.get('/search', searchLeads);
 
 export { leadRouter };
