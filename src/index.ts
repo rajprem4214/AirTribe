@@ -2,6 +2,7 @@ import * as express from "express"
 import * as bodyParser from "body-parser"
 import { AppDataSource } from "./data-source"
 import { apiV1Router } from "./api"
+import { loadData } from "../testData"
 
 AppDataSource.initialize().then(async () => {
     
@@ -11,6 +12,8 @@ AppDataSource.initialize().then(async () => {
     app.use('/api/v1', apiV1Router);
 
     app.listen(3000);
+
+    loadData();
 
     console.log("Express server has started on port 3000! ")
 
