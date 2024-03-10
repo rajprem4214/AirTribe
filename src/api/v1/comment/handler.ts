@@ -2,17 +2,26 @@ import { Request, Response } from 'express';
 import { AppDataSource } from "../../../data-source"
 import { Lead } from '../../../entity/Lead';
 import { Comment } from '../../../entity/Comment';
+import { Instructor } from '../../../entity/Instructor';
 
 export const addCommentHandler = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { leadId, text, instructor } = req.body;
+        const { leadId, text, instructorId } = req.body;
 
+        const instructor = await AppDataSource.getRepository(Instructor).findOneBy({
+            id: instructorId
+        });
+
+        if (!instructor) {
+            res.status(409).json({ error: 'No such instructor exists' });
+            return;
+        }
         // Retrieve the lead from the database
         const leadRepository = AppDataSource.getRepository(Lead);
         const lead = await leadRepository.findOneBy({ id: leadId });
 
         if (!lead) {
-            res.status(404).json({ error: 'Lead not found' });
+            res.status(409).json({ error: 'Lead not found' });
             return;
         }
 

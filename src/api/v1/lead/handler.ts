@@ -2,13 +2,23 @@ import { Request, Response } from 'express';
 import { AppDataSource } from "../../../data-source"
 import { ILike } from 'typeorm';
 import { Lead } from '../../../entity/Lead';
+import { Course } from '../../../entity/Course';
 
 export const createLeadHandler = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { course, name, email, phoneNumber, linkedInProfile } = req.body;
+        const { courseId, name, email, phoneNumber, linkedInProfile } = req.body;
+
+        const course = await AppDataSource.getRepository(Course).findOneBy({
+            id: courseId
+        });
+
+        if (!course) {
+            res.status(409).json({ error: 'No such course exists' });
+            return;
+        }
 
         const existingLead = await AppDataSource.getRepository(Lead).find({
-            where: { course, email }
+            where: { course: courseId, email: email }
         });
         if (existingLead) {
             res.status(409).json({ error: 'Lead with this course ID and email already exists' });

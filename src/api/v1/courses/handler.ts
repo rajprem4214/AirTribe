@@ -1,15 +1,26 @@
 import { Request, Response } from 'express';
 import { AppDataSource } from "../../../data-source"
 import { Course } from '../../../entity/Course';
+import { Instructor } from '../../../entity/Instructor';
 
 export const createCourseHandler = async (req: Request, res: Response): Promise<void> => {
     try {
         const { name, maxSeats, startDate, instructorId } = req.body;
+
+        const instructor = await AppDataSource.getRepository(Instructor).findOneBy({
+            id: instructorId
+        });
+
+        if(!instructor) {
+            res.status(409).json({ error: 'No such instructor exists' });
+            return;
+        }
+
         const course = new Course();
         course.name = name;
         course.maxSeats = maxSeats;
         course.startDate = startDate;
-        course.instructor = instructorId;
+        course.instructor = instructor;
         await AppDataSource.getRepository(Course).save(course);
         res.status(201).json(course);
     } catch (error) {
